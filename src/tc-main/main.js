@@ -22,6 +22,7 @@ app.on('before-quit', app.exit.bind(app, 0)); // Skip the 'close' event
 app.on('activate', unhideAppOnMac);
 
 function makeWindow() {
+  if (process.argv.indexOf('--tray') > 0) main.hide();
   var mainWinState = windowState({
     defaultWidth: 800,
     defaultHeight: 450
