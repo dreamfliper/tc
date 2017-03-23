@@ -14,7 +14,8 @@ else {
   const version = electron.remote.app.getVersion();
   const url = `http://dl.gettc.xyz/update/${os}/${version}`;
 
-  autoUpdater.setFeedURL(url);
+  try {autoUpdater.setFeedURL(url)}
+  catch (e) {console.warn('autoUpdater error:', e)}
 
   setTimeout(check, 15000);
   setInterval(check, 1000 * 60 * 60 * 23); // Check for updates every 23 hours
@@ -22,7 +23,8 @@ else {
   function check() {
     console.log('Checking for updates at ' + url);
     autoUpdater.on('error', handleAutomaticCheckError);
-    autoUpdater.checkForUpdates();
+    try {autoUpdater.checkForUpdates();}
+    catch (e) {console.warn('Auto-Update synchronous exception:', e);}
 
     function handleAutomaticCheckError(error) {
       console.warn('Unable to check for updates. ' +
