@@ -22,7 +22,6 @@ app.on('before-quit', app.exit.bind(app, 0)); // Skip the 'close' event
 app.on('activate', unhideAppOnMac);
 
 function makeWindow() {
-  if (process.argv.indexOf('--tray') > 0) main.hide();
   var mainWinState = windowState({
     defaultWidth: 800,
     defaultHeight: 450
@@ -39,6 +38,7 @@ function makeWindow() {
   });
 
   mainWinState.manage(main);
+  if (process.argv.indexOf('--tray') > 0) main.hide();
 
   main.on('close', function (e) {
     console.log('TC: Window tried closing, hiding it instead.');
