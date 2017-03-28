@@ -34,6 +34,7 @@ function makeWindow() {
     height: mainWinState.height,
     'min-width': 160,
     'min-height': 100,
+    titleBarStyle: 'hidden-inset',
     icon: __dirname + '/assets/icon256.png'
   });
 
