@@ -24,9 +24,7 @@
       "FileDescription": "Tc, the chat client for Twitch",
       "ProductName": "Tc"
     },
-    "dmg": {
-
-    },
+    "dmg": {},
     "mac": {
       "identity": "Andrea Stella (42XGWVW434)"
     },
