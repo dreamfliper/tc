@@ -5,7 +5,7 @@ import electron from 'electron';
 let tray;
 
 export default function makeTrayIconOnWindows() {
-  // if (process.platform !== 'win32') return null;
+  if (process.platform !== 'win32') return null;
   const Tray = electron.remote.Tray;
   const nativeImage = electron.remote.nativeImage;
   const Menu = electron.remote.Menu;
@@ -14,7 +14,7 @@ export default function makeTrayIconOnWindows() {
   const browserWindow = electron.remote.BrowserWindow;
   tray = new Tray(nativeImage.createFromDataURL(icon16));
 
-  // tray.on('click', () => browserWindow.getAllWindows()[0].show());
+  tray.on('click', () => browserWindow.getAllWindows()[0].show());
 
   tray.setContextMenu(Menu.buildFromTemplate([
     {
@@ -25,10 +25,6 @@ export default function makeTrayIconOnWindows() {
         settings.behavior.autoStart = !settings.behavior.autoStart;
         setAutoStart();
       }
-    },
-    {
-      label: 'Toggle window',
-      click: app.show()
     },
     {
       type: 'separator'
